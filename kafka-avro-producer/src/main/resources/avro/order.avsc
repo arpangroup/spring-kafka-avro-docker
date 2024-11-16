@@ -1,0 +1,25 @@
+{
+  "namespace": "com.arpangroup.model",
+  "type": "record",
+  "name": "Order",
+  "fields": [
+    { "name": "orderId", "type": "string" },
+    {
+      "name": "items",
+      "type": {"type": "array", "items": "string"
+      }
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "OrderStatus",
+        "symbols": ["PENDING", "SHIPPED", "DELIVERED", "CANCELLED"]
+      }
+    },
+    {
+      "name": "metadata",
+      "type": {"type": "map", "values": "string"}
+    }
+  ]
+}
