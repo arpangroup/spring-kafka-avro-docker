@@ -1,7 +1,14 @@
 ### [Avro](README-avro.md)
 ### [Kafka](README-kafka.md)
+### [Kafka | Pact Docs](https://docs.pact.io/recipes/kafka)
+### [How Pact works](https://docs.pact.io/getting_started/how_pact_works#how-to-write-message-pact-tests)
 
 
+### [capgemini-Consumer Driven Contract Testing with Pact, Kafka and Spring Boot](https://capgemini.github.io/development/pact-contract-testing-with-kafka/)
+- https://github.com/PapaAAnthony/kafka-pact
+
+
+## References:
 - [Live Coding - Kafka Avro Producer and Consumer by AajKaPlan](https://youtu.be/T3vfHQIpfdw?si=6M6ibv6i5UhdAjcq)
 - [Live Coding - Kafka Security SASL_PLAINTEXT | SASL handshake | Producer and Consumer App](https://youtu.be/-VPgVnnrLfE?si=tmA3rzVe2N_7qUk3)
 - [Live Coding - Retry in Kafka - Dead Letter Topic- Non-Blocking Retries in Spring Kafka](https://youtu.be/mkl-IcWSRnw?si=Dyca2Ig-cmrzGTwc)

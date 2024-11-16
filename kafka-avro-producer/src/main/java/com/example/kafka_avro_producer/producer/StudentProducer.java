@@ -1,4 +1,4 @@
-package com.example.kafka_avro_producer.service;
+package com.example.kafka_avro_producer.producer;
 
 import com.arpangroup.model.Student;
 import lombok.extern.slf4j.Slf4j;
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class KafkaProducerService {
+public class StudentProducer {
     @Autowired
     private KafkaTemplate<String, Student> kafkaTemplate;
 
-    public void sendAvroData(String topicName, Student student) {
+    public void sendMessage(String topicName, Student student) {
         log.info("sendAvroData to topic: {}", topicName);
         String key = "Key" + String.format("%.3f", Math.random());
         kafkaTemplate.send(topicName, key, student);

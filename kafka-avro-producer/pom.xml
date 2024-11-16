@@ -37,6 +37,10 @@
 			<id>confluent</id>
 			<url>https://packages.confluent.io/maven/</url>
 		</repository>
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -62,6 +66,29 @@
 			<artifactId>kafka-avro-serializer</artifactId>
 			<version>${confluent.version}</version>
 		</dependency>
+
+		<!-- Pact Provider Dependency -->
+		<dependency>
+			<groupId>au.com.dius.pact.provider</groupId>
+			<artifactId>junit5</artifactId>
+			<version>4.6.5</version>
+			<scope>test</scope>
+		</dependency>
+		<!--<dependency>
+			<groupId>au.com.dius.pact.provider</groupId>
+			<artifactId>spring</artifactId>
+			<version>4.6.5</version>
+			<scope>test</scope>
+		</dependency>-->
+
+		<!-- Pact Consumer Dependency -->
+		<dependency>
+			<groupId>au.com.dius.pact.consumer</groupId>
+			<artifactId>junit5</artifactId>
+			<version>4.6.5</version>
+			<scope>test</scope>
+		</dependency>
+
 
 
 		<!--<dependency>
