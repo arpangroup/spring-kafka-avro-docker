@@ -1,4 +1,4 @@
-package com.example.kafka_avro_producer.config;
+package com.example.kafka_avro_consumer.config;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;

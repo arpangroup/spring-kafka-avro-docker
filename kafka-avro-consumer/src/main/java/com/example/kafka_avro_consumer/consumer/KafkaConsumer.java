@@ -1,4 +1,4 @@
-package com.example.kafka_avro_producer.consumer;
+package com.example.kafka_avro_consumer.consumer;
 
 import com.arpangroup.model.Student;
 import lombok.extern.slf4j.Slf4j;
