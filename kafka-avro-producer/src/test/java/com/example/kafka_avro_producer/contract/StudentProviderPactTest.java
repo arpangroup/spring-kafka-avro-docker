@@ -43,6 +43,6 @@ public class StudentProviderPactTest {
                 .setAge(20)
                 .build();
 
-        studentProducer.sendMessage("student-data", student);
+        studentProducer.sendMessage(student);
     }
 }

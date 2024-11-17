@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class KafkaConsumer {
+public class StudentConsumer {
 
     @KafkaListener(topics = "student-data", groupId = "group_id", containerFactory = "myAvroConsumerFactory")
     public void listen(ConsumerRecord<String, Student> consumerRecord, Acknowledgment acknowledgment) {
@@ -19,5 +19,6 @@ public class KafkaConsumer {
         log.info("Data Consumed: {}-{}", key, value.toString());
         acknowledgment.acknowledge();
         log.info("acknowledged {}-{}", consumerRecord.partition(), consumerRecord.offset());
+        //return "processed a new student: " + value;
     }
 }

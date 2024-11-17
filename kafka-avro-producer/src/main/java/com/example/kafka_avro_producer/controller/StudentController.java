@@ -14,18 +14,10 @@ public class StudentController {
     @Autowired
     StudentProducer studentProducer;
 
-    @Value("${kafka.topic.name}")
-    private String kafkaTopicName;
-
-    @GetMapping("/ping")
-    public String ping() {
-        return "Hello World!";
-    }
-
     @PostMapping("/createStudent")
     public String getDataForKafkaTopic(@RequestBody Student student) {
-        log.info("send data....to topicName {}-{}", kafkaTopicName, student.toString());
-        studentProducer.sendMessage(kafkaTopicName, student);
+        log.info("send data to producer..... {}", student.toString());
+        studentProducer.sendMessage(student);
         return "Sata Posted";
     }
 }
