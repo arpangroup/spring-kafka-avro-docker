@@ -24,9 +24,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @ExtendWith(value = {PactConsumerTestExt.class, MockitoExtension.class})
 @PactTestFor(providerName = "student-provider", providerType = ProviderType.ASYNCH, pactVersion = PactSpecVersion.V3)
 public class StudentConsumerPactTest {
@@ -55,38 +52,9 @@ public class StudentConsumerPactTest {
                 .toPact();
     }
 
-
-/*    @Test
-    @PactTestFor(pactMethod = "definePact", providerType = ProviderType.ASYNCH)
-    void testStudentMessage(List<Message> messages) {
-        String payload = new String(messages.get(0).getContents().getValue());
-
-        // Assert the message payload matches the expected format (simplified check)
-        assertEquals("{\"studentName\":\"John Doe\",\"studentId\":\"S12345\",\"age\":20}", payload);
-    }*/
-
-    /*@Test
-    @PactTestFor(pactMethod = "studentDetailsPact", providerType = ProviderType.ASYNCH)
-    void testStudentDetailsContract(List<Message> messages) throws Exception {
-        // Convert the expected JSON to a JsonNode
-        String expectedJson = "{\"studentName\":\"John Doe\",\"studentId\":\"S12345\",\"age\":20}";
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode expectedNode = objectMapper.readTree(expectedJson);
-
-        // Get the payload from the message
-        String payload = new String(messages.get(0).getContents().getValue());
-
-        // Convert the actual payload to a JsonNode
-        JsonNode actualNode = objectMapper.readTree(payload);
-
-        // Compare the JSON nodes (this ignores the order of fields)
-        assertEquals(expectedNode, actualNode);
-    }*/
-
     @Test
     @PactTestFor(pactMethod = "studentDetailsPact", providerType = ProviderType.ASYNCH)
     void testStudentDetailsContract(List<Message> messages) throws Exception {
-        // Convert the expected JSON to a JsonNode
         Student expectedStudent = new Student("John Doe", "S12345", 30);
 
         /*String payload = new String(messages.get(0).getContents().getValue());
