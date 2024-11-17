@@ -10,12 +10,13 @@
         "studentName": "John Doe"
       },
       "description": "a student contract",
-      "metaData": {
+      "metadata": {
         "contentType": "application/json"
       }
     }
   ],
   "metadata": {
+    "contentType": "application/json",
     "pact-jvm": {
       "version": "4.6.5"
     },

@@ -15,7 +15,14 @@ import au.com.dius.pact.provider.junitsupport.loader.PactUrl;
 import com.arpangroup.model.Student;
 import com.example.kafka_avro_producer.producer.StudentProducer;
 import com.example.kafka_avro_producer.util.AvroHelper;
+import com.example.kafka_avro_producer.util.AvroUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.avro.io.DatumWriter;
+import org.apache.avro.io.EncoderFactory;
+import org.apache.avro.io.JsonEncoder;
+import org.apache.avro.specific.SpecificDatumWriter;
+import org.apache.avro.specific.SpecificRecordBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,14 +30,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
+import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Map;
 
 
 @Provider("student-provider")
-@PactBroker(url = "http://localhost:9292")
-//@PactFolder("src/test/resources/pacts/")
+//@PactBroker(url = "http://localhost:9292")
+@PactFolder("src/test/resources/pacts/")
 @SpringBootTest
 @Slf4j
 public class StudentProviderPactTest {
@@ -64,9 +72,9 @@ public class StudentProviderPactTest {
         return new MessageAndMetadata(avroData, metadata);
     }*/
 
-    @PactVerifyProvider("a student contract")
+/*    @PactVerifyProvider("a student contract")
     public MessageAndMetadata verifyMessage() {
-        // Construct the expected data in JSON format
+        System.out.println("Verifying message contract...");
         String jsonMessage = "{ \"age\": 30, \"studentId\": \"S12345\", \"studentName\": \"John Doe\" }";
 
         // Set metadata for content type as JSON
@@ -74,7 +82,32 @@ public class StudentProviderPactTest {
 
         // Return the message with the correct metadata
         return new MessageAndMetadata(jsonMessage.getBytes(StandardCharsets.UTF_8), metadata);
+    }*/
+
+    @PactVerifyProvider("a student contract")
+    public MessageAndMetadata verifyMessage() throws Exception {
+        System.out.println("Verifying message contract...");
+
+        // Create a Student object
+        Student student = new Student("John Doe", "S12345", 30);
+
+        // Serialize the Avro object to JSON format
+       /* ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        DatumWriter<SpecificRecordBase> writer = new SpecificDatumWriter<>(student.getSchema());
+        JsonEncoder jsonEncoder = EncoderFactory.get().jsonEncoder(student.getSchema(), outputStream);
+        writer.write(student, jsonEncoder);
+        jsonEncoder.flush();
+        String jsonMessage = outputStream.toString(StandardCharsets.UTF_8);*/
+
+        String jsonMessage = AvroUtils.convertAvroToJson(student);
+        Map<String, String> metadata = Map.of("contentType", "application/json");
+
+        System.out.println("Generated JSON Message: " + jsonMessage);
+
+        // Return the message with the correct metadata
+        return new MessageAndMetadata(jsonMessage.getBytes(StandardCharsets.UTF_8), metadata);
     }
+
 
     /*@State("a student created event")
     public void verifyStudentCreatedEvent() {
