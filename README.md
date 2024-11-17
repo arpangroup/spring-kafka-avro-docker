@@ -10,10 +10,6 @@
 
 
 
-# Contract Testing with Pact, Kafka, avro and Spring Boot
-
-
-
 
 
 ## References:
