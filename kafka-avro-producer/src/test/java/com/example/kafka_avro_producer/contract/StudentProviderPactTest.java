@@ -3,6 +3,7 @@ package com.example.kafka_avro_producer.contract;
 import au.com.dius.pact.provider.junit5.HttpTestTarget;
 import au.com.dius.pact.provider.junit5.PactVerificationContext;
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider;
+import au.com.dius.pact.provider.junitsupport.Consumer;
 import au.com.dius.pact.provider.junitsupport.Provider;
 import au.com.dius.pact.provider.junitsupport.State;
 import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
@@ -20,6 +21,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @PactBroker(host = "localhost", port = "9292")
 @SpringBootTest
 public class StudentProviderPactTest {
+    private static final String JSON_CONTENT_TYPE = "application/json";
+    private static final String KEY_CONTENT_TYPE = "contentType";
+
     @Autowired
     private StudentProducer studentProducer;
 
